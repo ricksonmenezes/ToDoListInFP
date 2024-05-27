@@ -45,16 +45,20 @@ class SeeATodoListAT {
 
 
 
-   /* private fun parseResponse(html: String): ToDoList {
+    private fun parseResponse(html: String): ToDoList {
         val nameRegex = "<h2>.*<".toRegex()
         val listName = ListName(extractListName(nameRegex, html))
         val itemsRegex = "<td>.*?<".toRegex()
         val items = itemsRegex.findAll(html)
             .map { ToDoItem(extractItemDesc(it)) }.toList()
-        return ToDoList(listName, items)
-    }*/
+        return ToDoList(listName,items)
+    }
+    private fun extractListName(nameRegex: Regex, html: String): String = nameRegex.find(html)?.value
+        ?.substringAfter("<h2>") ?.dropLast(1)
+        .orEmpty()
+    private fun extractItemDesc(matchResult: MatchResult): String = matchResult.value.substringAfter("<td>").dropLast(1)
 
-    private fun parseResponse(html: String): ToDoList = TODO("parse the response")
+
 
 
     private fun startTheApplication(
@@ -67,7 +71,7 @@ class SeeATodoListAT {
             items.map(::ToDoItem)
         )
         val lists = mapOf(User(user) to listOf(toDoList))
-        val server = Zettai().asServer(Jetty(8081)) //different from main
+        val server = Zettai(lists).asServer(Jetty(8081)) //different from main
         server.start()
     }
 
