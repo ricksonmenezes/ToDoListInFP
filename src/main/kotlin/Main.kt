@@ -9,7 +9,7 @@ import org.http4k.routing.routes
 import org.http4k.server.Jetty
 import org.http4k.server.asServer
 
-fun main() {T
+fun main() {
     println("Hello World!")
 
     val htmlPage = """ <html>
