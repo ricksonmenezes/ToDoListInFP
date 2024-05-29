@@ -19,6 +19,12 @@ class Zettai(val lists: Map<User, List<ToDoList>>): HttpHandler {
         .let(::renderHtml)
         .let(::createResponse)
 
+    /*infix fun
+    val processFun = ::extractListData andThen
+                     ::fetchListContent andThen
+                     ::renderHtml andThen
+                     ::createResponse*/
+
 
     private  fun extractListData(request: Request): Pair<User, ListName> {
         val user = request.path("user").orEmpty()
