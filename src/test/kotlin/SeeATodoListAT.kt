@@ -73,6 +73,8 @@ class SeeATodoListAT {
 
         }
 
+        //reason why list is not passsed for this test is because the API should fail merely with user and listname
+        //otoh, with canSeeTheList, while the API should pass, the list returned should be the same as expected list
         fun canNotSeeTheList(listName: String, items: List<String>, app: ApplicationForAT) {
 
             expectThrows<AssertionFailedError> {
