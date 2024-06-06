@@ -6,7 +6,7 @@ import org.http4k.routing.bind
 import org.http4k.routing.path
 import org.http4k.routing.routes
 
-class Zettai(val lists: Map<User, List<ToDoList>>): HttpHandler {
+class Zettai(val hub : ZettaiHub): HttpHandler {
 
     val routes = routes(
         "/todo/{user}/{list}" bind Method.GET to ::showList
@@ -34,9 +34,8 @@ class Zettai(val lists: Map<User, List<ToDoList>>): HttpHandler {
 
 
     fun fetchListContent(listId: Pair<User, ListName>): ToDoList =
-        lists[listId.first]
-        ?.firstOrNull { it.listName == listId.second }
-        ?: error("List unknown")
+        hub.getList(listId.first, listId.second)
+            ?: error("List unknown")
 
 
     fun renderHtml(todoList: ToDoList): HtmlPage =

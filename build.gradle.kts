@@ -19,6 +19,7 @@ dependencies1 {
     implementation("org.http4k:http4k-client-apache")
     implementation("org.http4k:http4k-server-jetty")
     testImplementation("io.strikt:strikt-core:0.34.0")
+    testImplementation("com.ubertob.pesticide:pesticide-core:1.6.5")
     testImplementation ("org.http4k:http4k-client-jetty")
 
 }

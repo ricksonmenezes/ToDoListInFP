@@ -1,9 +1,6 @@
 
 import com.rgarage.Zettai
-import com.rgarage.domain.ListName
-import com.rgarage.domain.ToDoItem
-import com.rgarage.domain.ToDoList
-import com.rgarage.domain.User
+import com.rgarage.domain.*
 import org.http4k.client.JettyClient
 import org.http4k.core.*
 import org.http4k.filter.ClientFilters
@@ -162,7 +159,7 @@ class SeeATodoListAT {
 
         /*when we start the app, we are sending the list into the  app start class Zettai
         * But Zettai has no variable to store the lists. It's  probably implicitly stored. */
-        val server = Zettai(lists).asServer(Jetty(8081)) //different from main
+        val server = Zettai(ToDoListHub(lists)).asServer(Jetty(8081)) //different from main
         server.start()
 
         val client = ClientFilters .SetBaseUriFrom(Uri.of("http://localhost:$port/")) .then(JettyClient())

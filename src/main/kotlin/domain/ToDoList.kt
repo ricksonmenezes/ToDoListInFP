@@ -9,3 +9,6 @@ enum class ToDoStatus { Todo, InProgress, Done, Blocked }
 data class ToDoItem(
     val description: String
 )
+
+/*
+data class  ZettaiHub(val user: User, val listName: ListName)*/
